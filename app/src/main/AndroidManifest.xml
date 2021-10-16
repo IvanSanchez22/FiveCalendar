@@ -10,9 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name=".MainActivity2"
+            android:name=".CalendarioActivity"
             android:exported="false" />
-        <activity android:name=".MainActivityBeta">
+        <activity android:name=".MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

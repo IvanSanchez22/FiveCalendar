@@ -3,9 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/migue/StudioProjects/FiveCalendar/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
-        <entry key="..\:/Users/migue/StudioProjects/FiveCalendar/app/src/main/res/layout/activity_main.xml" value="0.176" />
-        <entry key="..\:/Users/migue/StudioProjects/FiveCalendar/app/src/main/res/layout/activity_main2.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21927083333333333" />
+        <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.21927083333333333" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21927083333333333" />
+        <entry key="app/src/main/res/layout/activity_calendario.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.2" />
       </map>
     </option>
   </component>
