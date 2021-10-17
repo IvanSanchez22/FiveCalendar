@@ -23,7 +23,7 @@
             android:name=".CalendarioActivity"
             android:exported="false"/>
         <activity
-            android:name=".TareaActivity"
+            android:name=".DiaActivity"
             android:exported="false"/>
     </application>
 

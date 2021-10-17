@@ -6,14 +6,14 @@ import android.support.v7.widget.Toolbar;
 
 import java.util.List;
 
-public class TareaActivity extends AppCompatActivity {
+public class DiaActivity extends AppCompatActivity {
 
     private int[] fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tarea);
+        setContentView(R.layout.activity_dia);
         fecha = (int[]) getIntent().getExtras().get("fecha");
         Toolbar toolbar = findViewById(R.id.toolbarTarea);
         toolbar.setTitle("Tareas del día " + fecha[0] + "/" + fecha[1] + "/" + fecha[2]);

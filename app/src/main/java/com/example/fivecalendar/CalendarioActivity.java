@@ -23,7 +23,7 @@ public class CalendarioActivity extends AppCompatActivity {
                 String fechaStr = dayOfMonth + "/" + ++month + "/" + year ;
                 Toast.makeText(CalendarioActivity.this, fechaStr, Toast.LENGTH_SHORT).show();
                 int[] fechaArr = {dayOfMonth, month, year};
-                Intent intent = new Intent(CalendarioActivity.this, TareaActivity.class);
+                Intent intent = new Intent(CalendarioActivity.this, DiaActivity.class);
                 intent.putExtra("fecha", fechaArr);
                 startActivity(intent);
             }
