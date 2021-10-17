@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void abrirCalendario(View view) {
 
-        Intent i = new Intent(this, CalendarioActivity.class);
+        Intent i = new Intent(MainActivity.this, CalendarioActivity.class);
         startActivity(i);
         /*Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void noDesarrollado(View view) {
-        Toast.makeText(this, "No desarrollado todavía", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "No desarrollado todavía", Toast.LENGTH_SHORT).show();
     }
 
 }

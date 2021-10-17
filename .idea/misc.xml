@@ -6,9 +6,10 @@
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21927083333333333" />
         <entry key="app/src/main/res/drawable/button_rounded.xml" value="0.21927083333333333" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21927083333333333" />
-        <entry key="app/src/main/res/layout/activity_calendario.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_calendario.xml" value="0.2893258426966292" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout/activity_tarea2.xml" value="0.36041666666666666" />
       </map>
     </option>
   </component>
@@ -17,5 +18,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
   </component>
 </project>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FiveCalendar</string>
+    <string name="title_activity_tarea">TareaActivity</string>
+    <string name="horario">Horario</string>
+    <string name="abrir_calendario">Abrir Calendario</string>
+    <string name="anadir_tarea">Añadir Tarea</string>
+    <string name="ver_semana">Ver Semana</string>
 </resources>

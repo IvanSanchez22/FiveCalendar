@@ -20,12 +20,12 @@ public class CalendarioActivity extends AppCompatActivity {
         cal.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
-                String fecha = dayOfMonth + "/" + month + "/" + year ;
-                Toast.makeText(CalendarioActivity.this, fecha, Toast.LENGTH_SHORT).show();
-                /*Intent intent = new Intent(this, );
-                int date[] = {dayOfMonth, month, year};
-                intent.putExtra("date", date);
-                startActivity(intent);*/
+                String fechaStr = dayOfMonth + "/" + ++month + "/" + year ;
+                Toast.makeText(CalendarioActivity.this, fechaStr, Toast.LENGTH_SHORT).show();
+                int[] fechaArr = {dayOfMonth, month, year};
+                Intent intent = new Intent(CalendarioActivity.this, TareaActivity.class);
+                intent.putExtra("fecha", fechaArr);
+                startActivity(intent);
             }
         });
     }

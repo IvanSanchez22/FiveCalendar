@@ -5,26 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?attr/background"
-    tools:context=".CalendarioActivity">
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="130dp"
-        android:theme="@style/Theme.FiveCalendar.CalendarView"
-        android:dateTextAppearance="@style/Theme.FiveCalendar.CalendarViewDateText"
-        android:weekDayTextAppearance="@style/Theme.FiveCalendar.CalendarViewWeekText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".TareaActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbarCalendario"
+        android:id="@+id/toolbarTarea"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:duplicateParentState="false"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintTop_toTopOf="parent"
