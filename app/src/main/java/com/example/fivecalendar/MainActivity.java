@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     TextView tv;
@@ -35,4 +36,9 @@ public class MainActivity extends AppCompatActivity {
         }, year, month, day); dpd.getWindow().setBackgroundDrawable(new ColorDrawable());
         dpd.show();*/
     }
+
+    public void noDesarrollado(View view) {
+        Toast.makeText(this, "No desarrollado todavía", Toast.LENGTH_SHORT).show();
+    }
+
 }

@@ -21,7 +21,7 @@ public class CalendarioActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String fecha = dayOfMonth + "/" + month + "/" + year ;
-                Toast.makeText(CalendarioActivity.this, fecha, Toast.LENGTH_LONG).show();
+                Toast.makeText(CalendarioActivity.this, fecha, Toast.LENGTH_SHORT).show();
                 /*Intent intent = new Intent(this, );
                 int date[] = {dayOfMonth, month, year};
                 intent.putExtra("date", date);

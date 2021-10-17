@@ -6,12 +6,13 @@ import java.util.List;
 
 public class Calendario {
 
-    List<Tarea> tareas = new ArrayList<>();
-    Horario horario;
+    private List<Tarea> tareas = new ArrayList<>();
+    private Horario horario;
+    private static Calendario instance;
 
-    public Calendario(Horario horario) {
-        this.horario = horario;
-        actualizarHorario();
+    public static Calendario getInstance() {
+        if (instance == null) instance = new Calendario();
+        return instance;
     }
 
     public List<Tarea> getTareas() {
@@ -46,6 +47,55 @@ public class Calendario {
 
     public Tarea getTarea(int index) {
         return tareas.get(index);
+    }
+
+    public List<Tarea> getTareasDia(int dia, int mes, int anio) {
+        Calendar fecha = Calendar.getInstance();
+        fecha.set(anio, mes, dia);
+        Horario.updateFecha(fecha);
+        List<Tarea> tareas = new ArrayList<>();
+        int index = 0;
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            index++;
+        }
+        fecha.add(Calendar.DAY_OF_YEAR, 1);
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            tareas.add(this.tareas.get(index));
+        }
+        return tareas;
+    }
+
+    public List<Tarea> getTareasSemana(int dia, int mes, int anio) {
+        Calendar fecha = Calendar.getInstance();
+        fecha.set(anio, mes, dia);
+        fecha.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        Horario.updateFecha(fecha);
+        List<Tarea> tareas = new ArrayList<>();
+        int index = 0;
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            index++;
+        }
+        fecha.add(Calendar.WEEK_OF_YEAR, 1);
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            tareas.add(this.tareas.get(index));
+        }
+        return tareas;
+    }
+
+    public List<Tarea> getTareasMes(int mes, int anio) {
+        Calendar fecha = Calendar.getInstance();
+        fecha.set(anio, mes, 1);
+        Horario.updateFecha(fecha);
+        List<Tarea> tareas = new ArrayList<>();
+        int index = 0;
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            index++;
+        }
+        fecha.add(Calendar.MONTH, 1);
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            tareas.add(this.tareas.get(index));
+        }
+        return tareas;
     }
 
     private void actualizarHorario() {

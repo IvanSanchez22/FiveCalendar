@@ -9,7 +9,7 @@ public class Horario {
 	private Calendar fechaInicio, fechaFin;
 	private List<Clase> clases;
 
-	private void updateFecha(Calendar fecha) {
+	static void updateFecha(Calendar fecha) {
 		fecha.set(Calendar.HOUR, 0);
 		fecha.set(Calendar.MINUTE, 0);
 		fecha.set(Calendar.SECOND, 0);

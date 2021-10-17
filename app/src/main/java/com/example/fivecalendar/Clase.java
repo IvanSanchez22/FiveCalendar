@@ -30,7 +30,7 @@ public class Clase extends Evento {
 		} else if(diaSemana > clase.diaSemana) {
 			return false;
 		}
-		return super.getHoraInicio().before(clase.getHoraInicio());
+		return super.before(clase);
 	}
 
 	@Override

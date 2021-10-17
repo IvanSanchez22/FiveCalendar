@@ -1,7 +1,6 @@
 package com.example.fivecalendar;
 
 import java.util.Calendar;
-import java.util.Objects;
 
 public abstract class Evento {
 
@@ -9,7 +8,7 @@ public abstract class Evento {
 	private String nombre;
 	private String descripcion;
 
-	private void updateHour(Calendar hora) {
+	static void updateHora(Calendar hora) {
 		Calendar auxCal = Calendar.getInstance();
 		hora.set(auxCal.get(Calendar.YEAR), auxCal.get(Calendar.MONTH), auxCal.get(Calendar.DATE));
 	}
@@ -17,8 +16,8 @@ public abstract class Evento {
 	public Evento(String nombre, String descripcion, Calendar horaInicio, Calendar horaFin) {
 		this.nombre = nombre;
 		this.descripcion = descripcion;
-		updateHour(horaInicio);
-		updateHour(horaFin);
+		updateHora(horaInicio);
+		updateHora(horaFin);
 		setHoras(horaInicio, horaFin);
 	}
 
@@ -39,8 +38,8 @@ public abstract class Evento {
 	}
 	
 	public void setHoras(Calendar horaInicio, Calendar horaFin) {
-		updateHour(horaInicio);
-		updateHour(horaFin);
+		updateHora(horaInicio);
+		updateHora(horaFin);
 		if(horaInicio.before(horaFin)) {
 			this.horaInicio = horaInicio;
 			this.horaFin = horaFin;
@@ -71,6 +70,12 @@ public abstract class Evento {
 		if (o == null || getClass() != o.getClass()) return false;
 		Evento evento = (Evento) o;
 		return horaInicio.equals(evento.horaInicio) && horaFin.equals(evento.horaFin) && nombre.equals(evento.nombre);
+	}
+
+	protected boolean before(Evento evento) {
+		updateHora(evento.getHoraInicio());
+		updateHora(horaInicio);
+		return horaInicio.before(evento.getHoraInicio());
 	}
 
 }

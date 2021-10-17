@@ -25,7 +25,7 @@ public class Tarea extends Evento {
 	}
 
 	public boolean before(Tarea tarea) {
-		return fecha.before(tarea.fecha) && super.getHoraInicio().before(tarea.getHoraInicio());
+		return fecha.before(tarea.fecha) && super.before(tarea);
 	}
 
 
