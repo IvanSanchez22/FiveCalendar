@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void abrirCalendario(View view) {
-
         Intent i = new Intent(MainActivity.this, CalendarioActivity.class);
         startActivity(i);
         /*Calendar cal = Calendar.getInstance();
@@ -35,6 +34,12 @@ public class MainActivity extends AppCompatActivity {
             }
         }, year, month, day); dpd.getWindow().setBackgroundDrawable(new ColorDrawable());
         dpd.show();*/
+    }
+
+    public void añadirTarea(View view) {
+        Intent i = new Intent(MainActivity.this, AnadirTarea.class);
+        startActivity(i);
+
     }
 
     public void noDesarrollado(View view) {

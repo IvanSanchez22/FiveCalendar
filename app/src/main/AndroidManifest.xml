@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FiveCalendar">
         <activity
+            android:name=".AnadirTarea"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.FiveCalendar.Menu">
@@ -21,10 +24,10 @@
         </activity>
         <activity
             android:name=".CalendarioActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".DiaActivity"
-            android:exported="false"/>
+            android:exported="false" />
     </application>
 
 </manifest>
