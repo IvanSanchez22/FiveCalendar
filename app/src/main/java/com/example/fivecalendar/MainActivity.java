@@ -14,32 +14,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //tv = findViewById(R.id.textView);
     }
 
     public void abrirCalendario(View view) {
         Intent i = new Intent(MainActivity.this, CalendarioActivity.class);
         startActivity(i);
-        /*Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dpd = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                String fecha = dayOfMonth + "/" + month + "/" + year ;
-                tv.setText(fecha);
-            }
-        }, year, month, day); dpd.getWindow().setBackgroundDrawable(new ColorDrawable());
-        dpd.show();*/
     }
 
     public void añadirTarea(View view) {
-        Intent i = new Intent(MainActivity.this, AnadirTarea.class);
+        Intent i = new Intent(MainActivity.this, NewTareaActivity.class);
         startActivity(i);
-
     }
 
     public void noDesarrollado(View view) {
