@@ -15,7 +15,7 @@
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Calendario"
+        app:title="Five Calendar"
         tools:layout_editor_absoluteX="1dp" />
 
     <Button
