@@ -11,12 +11,12 @@ public class Calendario {
     private static Calendario instance;
 
     private Calendario() {
-        Calendar fecha = Calendar.getInstance();
+        /*Calendar fecha = Calendar.getInstance();
         Horario.updateFecha(fecha);
         Calendar horaInicio = Calendar.getInstance();
         Calendar horaFin = Calendar.getInstance();
         horaFin.add(Calendar.HOUR, 2);
-        agregarTarea(new Tarea("Demo", fecha, horaInicio, horaFin));
+        agregarTarea(new Tarea("Demo", fecha, horaInicio, horaFin));*/
     }
 
     public static Calendario getInstance() {
