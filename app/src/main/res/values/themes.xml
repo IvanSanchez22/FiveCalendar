@@ -10,6 +10,10 @@
         <item name="titleTextColor">@color/white</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.FiveCalendar.EditText" parent="Theme.FiveCalendar">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+    </style>
     <style name="Theme.FiveCalendar.Menu" parent="Theme.FiveCalendar">
         <item name="background">@color/menu_background</item>
     </style>
