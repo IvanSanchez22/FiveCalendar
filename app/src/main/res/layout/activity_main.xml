@@ -45,7 +45,7 @@
         android:id="@+id/button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="añadirTarea"
+        android:onClick="anadirTarea"
         android:text="@string/anadir_tarea"
         android:textAllCaps="true"
         android:theme="@style/Theme.FiveCalendar.Button"

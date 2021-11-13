@@ -3,10 +3,15 @@ package com.example.fivecalendar;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.LinearLayout;
 
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class DiaActivity extends AppCompatActivity {
 
@@ -21,10 +26,28 @@ public class DiaActivity extends AppCompatActivity {
         toolbar.setTitle("Tareas del día " + fecha[0] + "/" + fecha[1] + "/" + fecha[2]);
         Calendario calendario = Calendario.getInstance();
         List<Tarea> tareas = calendario.getTareasDia(fecha[0], fecha[1], fecha[2]);
+
+        LinearLayout layout = findViewById(R.id.scroll_view_linear_layout);
+
+        for(Tarea tarea: tareas) {
+            ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_TareaButton);
+            AppCompatButton button = new AppCompatButton(newContext);
+            String texto = String.format(Locale.getDefault(), "%02d", tarea.getHoraInicio().get(Calendar.HOUR_OF_DAY)) + ":" + String.format(Locale.getDefault(), "%02d", tarea.getHoraInicio().get(Calendar.MINUTE)) + " - " + String.format(Locale.getDefault(), "%02d", tarea.getHoraFin().get(Calendar.HOUR_OF_DAY)) + ":" + String.format(Locale.getDefault(), "%02d", tarea.getHoraFin().get(Calendar.MINUTE)) + "    " + tarea.getNombre();
+            button.setText(texto);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Intent a Vista tarea
+                    //Añadir la tarea como extra
+                }
+            });
+            layout.addView(button);
+        }
     }
 
-    public void añadirTarea(View view) {
+    public void anadirTarea(View view) {
         Intent i = new Intent(DiaActivity.this, NewTareaActivity.class);
+        i.putExtra("fecha", fecha);
         startActivity(i);
     }
 }

@@ -30,4 +30,10 @@
     <style name="Theme.FiveCalendar.Button" parent="Theme.FiveCalendar">
         <item name="backgroundTint">?attr/colorPrimary</item>
     </style>
+    <style name="Theme.FiveCalendar.TareaButton" parent="Theme.FiveCalendar">
+        <item name="backgroundTint">@color/cardview_dark_background</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">left</item>
+    </style>
 </resources>

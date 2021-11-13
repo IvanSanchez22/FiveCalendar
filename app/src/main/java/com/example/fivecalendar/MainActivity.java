@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void añadirTarea(View view) {
+    public void anadirTarea(View view) {
         Intent i = new Intent(MainActivity.this, NewTareaActivity.class);
         startActivity(i);
     }

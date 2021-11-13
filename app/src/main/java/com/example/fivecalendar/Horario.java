@@ -10,7 +10,7 @@ public class Horario {
 	private List<Clase> clases;
 
 	static void updateFecha(Calendar fecha) {
-		fecha.set(Calendar.HOUR, 0);
+		fecha.set(Calendar.HOUR_OF_DAY, 0);
 		fecha.set(Calendar.MINUTE, 0);
 		fecha.set(Calendar.SECOND, 0);
 		fecha.set(Calendar.MILLISECOND, 0);

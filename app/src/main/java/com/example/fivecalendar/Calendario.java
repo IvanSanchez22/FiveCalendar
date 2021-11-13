@@ -10,6 +10,15 @@ public class Calendario {
     private Horario horario;
     private static Calendario instance;
 
+    private Calendario() {
+        Calendar fecha = Calendar.getInstance();
+        Horario.updateFecha(fecha);
+        Calendar horaInicio = Calendar.getInstance();
+        Calendar horaFin = Calendar.getInstance();
+        horaFin.add(Calendar.HOUR, 2);
+        agregarTarea(new Tarea("Demo", fecha, horaInicio, horaFin));
+    }
+
     public static Calendario getInstance() {
         if (instance == null) instance = new Calendario();
         return instance;
@@ -51,16 +60,17 @@ public class Calendario {
 
     public List<Tarea> getTareasDia(int dia, int mes, int anio) {
         Calendar fecha = Calendar.getInstance();
-        fecha.set(anio, mes, dia);
+        fecha.set(anio, mes - 1, dia);
         Horario.updateFecha(fecha);
         List<Tarea> tareas = new ArrayList<>();
         int index = 0;
         while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
             index++;
         }
-        fecha.add(Calendar.DAY_OF_YEAR, 1);
-        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+        //fecha.add(Calendar.DAY_OF_YEAR, 1);
+        while(index < this.tareas.size() && !fecha.before(this.tareas.get(index).getFecha())) {
             tareas.add(this.tareas.get(index));
+            index++;
         }
         return tareas;
     }
