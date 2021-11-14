@@ -30,6 +30,12 @@ public class DiaActivity extends AppCompatActivity {
         actualizarTareas();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        actualizarTareas();
+    }
+
     private void actualizarTareas() {
 
         Calendario calendario = Calendario.getInstance();
