@@ -1,6 +1,7 @@
 package com.example.fivecalendar;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Tarea extends Evento {
 
@@ -26,9 +27,18 @@ public class Tarea extends Evento {
 	}
 
 	public boolean before(Tarea tarea) {
+		Horario.updateFecha(fecha);
+		Horario.updateFecha(tarea.fecha);
 		return fecha.before(tarea.fecha) && super.before(tarea);
 	}
 
-
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		if (!super.equals(o)) return false;
+		Tarea tarea = (Tarea) o;
+		return fecha.equals(tarea.fecha);
+	}
 
 }

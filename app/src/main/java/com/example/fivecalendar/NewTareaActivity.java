@@ -1,40 +1,67 @@
 package com.example.fivecalendar;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class NewTareaActivity extends AppCompatActivity {
 
     private static final String TAG = "NewTareaActivity";
-    private int[] fechaA;
     private EditText nombre, descripcion, horaInicio, horaFin;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private TextView mDisplayDate;
+    private TextView displayFecha;
+
+    private int[] fecha = {1, 1, 1};
+
+    private void actualizarDisplayFecha() {
+        String fecha = String.format(Locale.getDefault(), "%02d", this.fecha[0]) + "/" + String.format(Locale.getDefault(), "%02d", this.fecha[1] + 1) + "/" + String.format(Locale.getDefault(), "%02d", this.fecha[2]);
+        displayFecha.setText(fecha);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_tarea);
-        nombre = (EditText)findViewById(R.id.editTextTextPersonName2);
-        descripcion = (EditText)findViewById(R.id.editTextTextMultiLine);
-        horaInicio = (EditText)findViewById(R.id.editTextTime);
-        horaInicio = (EditText)findViewById(R.id.editTextTime2);
 
-        mDisplayDate = (TextView)findViewById(R.id.tvDate);
-        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+        Bundle extras = getIntent().getExtras();
+        if (extras == null || !extras.containsKey("fecha")) {
+            Calendar calendar = Calendar.getInstance();
+            fecha[2] = calendar.get(Calendar.YEAR);
+            fecha[1] = calendar.get(Calendar.MONTH);
+            fecha[0] = calendar.get(Calendar.DAY_OF_MONTH);
+        } else {
+            fecha = (int[]) extras.get("fecha");
+        }
+
+        nombre = findViewById(R.id.editTextTextPersonName2);
+        descripcion = findViewById(R.id.editTextTextMultiLine);
+        horaInicio = findViewById(R.id.editTextTime);
+        horaFin = findViewById(R.id.editTextTime2);
+
+        displayFecha = findViewById(R.id.tvDatePicker);
+        actualizarDisplayFecha();
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                fecha[0] = dayOfMonth;
+                fecha[1] = month;
+                fecha[2] = year;
+                actualizarDisplayFecha();
+            }
+        };
+
+        displayFecha.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar cal = Calendar.getInstance();
@@ -51,31 +78,12 @@ public class NewTareaActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                month += 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyyy: " + year + "/" + month + "/" + dayOfMonth);
-                String date = month + "/" + dayOfMonth + "/" + year;
-                mDisplayDate.setText(date);
-            }
-        };
-
-        Bundle extras = getIntent().getExtras();
-        if (extras == null || !extras.containsKey("fecha")) {
-            Toast.makeText(this, "Llamado desde el Menú", Toast.LENGTH_SHORT).show();
-
-        } else {
-            fechaA = (int[]) extras.get("fecha");
-            Toast.makeText(this, "Llamado desde el día" + Integer.toString(fechaA[0]) + "/" + Integer.toString(fechaA[1]) + "/" + Integer.toString(fechaA[2]), Toast.LENGTH_SHORT).show();
-
-        }
     }
 
-    public void GuardarTarea() {
-        //Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fecha.getText(), horaInicio, horaFin);
-
+    public void guardarTarea(View v) {
+        Calendar fechaTarea = Calendar.getInstance();
+        fechaTarea.set(fecha[2], fecha[1], fecha[0]);
+        //Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicio, horaFin);
 
         this.finish();
     }
