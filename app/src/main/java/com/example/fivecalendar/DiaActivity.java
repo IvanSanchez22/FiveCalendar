@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -18,6 +19,7 @@ public class DiaActivity extends AppCompatActivity {
 
     private int[] fecha;
     private String fechaString;
+    private AppCompatTextView noTareasText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +46,12 @@ public class DiaActivity extends AppCompatActivity {
         ContextThemeWrapper newContext;
 
         if(tareas.size() == 0) {
-            newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_PlainText);
-            AppCompatTextView text = new AppCompatTextView(newContext);
-            text.setText("No tienes tareas el día " + fechaString);
-            layout.addView(text);
+            if(noTareasText == null) {
+                newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_PlainText);
+                noTareasText = new AppCompatTextView(newContext);
+                noTareasText.setText("No tienes tareas el día " + fechaString);
+                layout.addView(noTareasText);
+            }
         } else {
             newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_TareaButton);
             for (Tarea tarea : tareas) {
