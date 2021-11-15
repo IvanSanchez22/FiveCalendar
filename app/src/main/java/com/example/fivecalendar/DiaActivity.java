@@ -26,8 +26,8 @@ public class DiaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dia);
         fecha = (int[]) getIntent().getExtras().get("fecha");
-        fechaString = String.format(Locale.getDefault(), "%02d", fecha[0]) + "/" + String.format(Locale.getDefault(), "%02d", fecha[1] + 1) + "/" + String.format(Locale.getDefault(), "%02d", fecha[2]);
-        Toolbar toolbar = findViewById(R.id.toolbarTarea);
+        fechaString = StringCreator.fechaString(fecha);
+        Toolbar toolbar = findViewById(R.id.toolbarDia);
         toolbar.setTitle("Tareas del día " + fechaString);
         actualizarTareas();
     }
@@ -55,14 +55,16 @@ public class DiaActivity extends AppCompatActivity {
             newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_TareaButton);
             for (Tarea tarea : tareas) {
                 AppCompatButton button = new AppCompatButton(newContext);
-                String texto = String.format(Locale.getDefault(), "%02d", tarea.getHoraInicio().get(Calendar.HOUR_OF_DAY)) + ":" + String.format(Locale.getDefault(), "%02d", tarea.getHoraInicio().get(Calendar.MINUTE)) + " - " + String.format(Locale.getDefault(), "%02d", tarea.getHoraFin().get(Calendar.HOUR_OF_DAY)) + ":" + String.format(Locale.getDefault(), "%02d", tarea.getHoraFin().get(Calendar.MINUTE)) + "    " + tarea.getNombre();
+                int[] horaInicio = {tarea.getHoraInicio().get(Calendar.HOUR_OF_DAY), tarea.getHoraInicio().get(Calendar.MINUTE)};
+                int[] horaFin = {tarea.getHoraFin().get(Calendar.HOUR_OF_DAY), tarea.getHoraFin().get(Calendar.MINUTE)};
+                String texto = StringCreator.horaString(horaInicio) + " - " + StringCreator.horaString(horaFin) + "    " + tarea.getNombre();
                 button.setText(texto);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         AppCompatButton b = (AppCompatButton) v;
                         Intent intent = new Intent(DiaActivity.this, TareaActivity.class);
-                        intent.putExtra("horaInicio", tarea);
+                        intent.putExtra("tarea", tarea);
                         startActivity(intent);
                     }
                 });
