@@ -75,6 +75,24 @@ public class Calendario {
         return tareas;
     }
 
+    public List<Tarea> getTareasDia(int dia, int mes, int anio, List<Integer> indexes) {
+        Calendar fecha = Calendar.getInstance();
+        fecha.set(anio, mes, dia);
+        Horario.updateFecha(fecha);
+        List<Tarea> tareas = new ArrayList<>();
+        int index = 0;
+        while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
+            index++;
+        }
+        //fecha.add(Calendar.DAY_OF_YEAR, 1);
+        while(index < this.tareas.size() && !fecha.before(this.tareas.get(index).getFecha())) {
+            tareas.add(this.tareas.get(index));
+            indexes.add(index);
+            index++;
+        }
+        return tareas;
+    }
+
     public List<Tarea> getTareasSemana(int dia, int mes, int anio) {
         Calendar fecha = Calendar.getInstance();
         fecha.set(anio, mes, dia);

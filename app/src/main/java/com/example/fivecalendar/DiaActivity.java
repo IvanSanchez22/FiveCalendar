@@ -41,7 +41,8 @@ public class DiaActivity extends AppCompatActivity {
     private void actualizarTareas() {
 
         Calendario calendario = Calendario.getInstance();
-        List<Tarea> tareas = calendario.getTareasDia(fecha[0], fecha[1], fecha[2]);
+        List<Integer> indexes = new ArrayList<>();
+        List<Tarea> tareas = calendario.getTareasDia(fecha[0], fecha[1], fecha[2], indexes);
         LinearLayout layout = findViewById(R.id.scroll_view_linear_layout);
         layout.removeAllViewsInLayout();
         ContextThemeWrapper newContext;
@@ -53,7 +54,9 @@ public class DiaActivity extends AppCompatActivity {
             layout.addView(noTareasText);
         } else {
             newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_TareaButton);
-            for (Tarea tarea : tareas) {
+            for (int i=0; i<tareas.size(); i++) {
+                Tarea tarea = tareas.get(i);
+                int index = indexes.get(i);
                 AppCompatButton button = new AppCompatButton(newContext);
                 int[] horaInicio = {tarea.getHoraInicio().get(Calendar.HOUR_OF_DAY), tarea.getHoraInicio().get(Calendar.MINUTE)};
                 int[] horaFin = {tarea.getHoraFin().get(Calendar.HOUR_OF_DAY), tarea.getHoraFin().get(Calendar.MINUTE)};
@@ -65,6 +68,7 @@ public class DiaActivity extends AppCompatActivity {
                         AppCompatButton b = (AppCompatButton) v;
                         Intent intent = new Intent(DiaActivity.this, TareaActivity.class);
                         intent.putExtra("tarea", tarea);
+                        intent.putExtra("index_calendario", index);
                         startActivity(intent);
                     }
                 });
