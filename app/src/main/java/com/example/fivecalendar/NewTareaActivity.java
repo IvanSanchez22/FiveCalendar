@@ -76,10 +76,15 @@ public class NewTareaActivity extends AppCompatActivity {
         Calendar horaFinTarea = Calendar.getInstance();
         horaFinTarea.set(Calendar.HOUR_OF_DAY, horaFin[0]);
         horaFinTarea.set(Calendar.MINUTE, horaFin[1]);
-        Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
-        Calendario cal = Calendario.getInstance();
-        cal.agregarTarea(NewTarea);
-        this.finish();
+
+        try {
+            Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
+            Calendario cal = Calendario.getInstance();
+            cal.agregarTarea(NewTarea);
+            this.finish();
+        } catch(IncorrectHoursException e) {
+
+        }
     }
 
     public void abrirFecha(View v) {
