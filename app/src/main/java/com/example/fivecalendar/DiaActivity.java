@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -59,8 +60,10 @@ public class DiaActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //Intent a Vista tarea
-                        //Añadir la tarea como extra
+                        AppCompatButton b = (AppCompatButton) v;
+                        Intent intent = new Intent(DiaActivity.this, TareaActivity.class);
+                        intent.putExtra("horaInicio", tarea);
+                        startActivity(intent);
                     }
                 });
                 layout.addView(button);

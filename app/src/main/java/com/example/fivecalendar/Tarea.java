@@ -9,6 +9,7 @@ public class Tarea extends Evento {
 	
 	public Tarea(String nombre, String descripcion, Calendar fecha, Calendar horaInicio, Calendar horaFin) {
 		super(nombre, descripcion, horaInicio, horaFin);
+		Horario.updateFecha(fecha);
 		this.fecha = fecha;
 	}
 

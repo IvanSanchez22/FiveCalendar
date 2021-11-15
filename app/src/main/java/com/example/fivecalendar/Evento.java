@@ -1,8 +1,9 @@
 package com.example.fivecalendar;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public abstract class Evento {
+public abstract class Evento implements Serializable {
 
 	private Calendar horaInicio, horaFin;
 	private String nombre;
