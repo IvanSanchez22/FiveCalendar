@@ -4,16 +4,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icono_app"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/icono_app"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FiveCalendar">
         <activity
-            android:name=".NewTareaActivity"
+            android:name=".TareaActivity"
             android:exported="false" />
         <activity
-            android:name=".AnadirTarea"
+            android:name=".NewTareaActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -11,6 +11,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -68,22 +69,25 @@ public class NewTareaActivity extends AppCompatActivity {
     }
 
     public void guardarTarea(View v) {
-        Calendar fechaTarea = Calendar.getInstance();
-        fechaTarea.set(fecha[2], fecha[1], fecha[0]);
-        Calendar horaInicioTarea = Calendar.getInstance();
-        horaInicioTarea.set(Calendar.HOUR_OF_DAY, horaInicio[0]);
-        horaInicioTarea.set(Calendar.MINUTE, horaInicio[1]);
-        Calendar horaFinTarea = Calendar.getInstance();
-        horaFinTarea.set(Calendar.HOUR_OF_DAY, horaFin[0]);
-        horaFinTarea.set(Calendar.MINUTE, horaFin[1]);
-
-        try {
-            Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
-            Calendario cal = Calendario.getInstance();
-            cal.agregarTarea(NewTarea);
-            this.finish();
-        } catch(IncorrectHoursException e) {
-
+        if(!nombre.getText().toString().equals("")) {
+            Calendar fechaTarea = Calendar.getInstance();
+            fechaTarea.set(fecha[2], fecha[1], fecha[0]);
+            Calendar horaInicioTarea = Calendar.getInstance();
+            horaInicioTarea.set(Calendar.HOUR_OF_DAY, horaInicio[0]);
+            horaInicioTarea.set(Calendar.MINUTE, horaInicio[1]);
+            Calendar horaFinTarea = Calendar.getInstance();
+            horaFinTarea.set(Calendar.HOUR_OF_DAY, horaFin[0]);
+            horaFinTarea.set(Calendar.MINUTE, horaFin[1]);
+            try {
+                Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
+                Calendario cal = Calendario.getInstance();
+                cal.agregarTarea(NewTarea);
+                this.finish();
+            } catch (IncorrectHoursException e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(this, "Por favor, ponle nombre a tu tarea", Toast.LENGTH_LONG).show();
         }
     }
 
