@@ -19,7 +19,6 @@ public class DiaActivity extends AppCompatActivity {
 
     private int[] fecha;
     private String fechaString;
-    private AppCompatTextView noTareasText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,15 +42,14 @@ public class DiaActivity extends AppCompatActivity {
         Calendario calendario = Calendario.getInstance();
         List<Tarea> tareas = calendario.getTareasDia(fecha[0], fecha[1], fecha[2]);
         LinearLayout layout = findViewById(R.id.scroll_view_linear_layout);
+        layout.removeAllViewsInLayout();
         ContextThemeWrapper newContext;
 
         if(tareas.size() == 0) {
-            if(noTareasText == null) {
-                newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_PlainText);
-                noTareasText = new AppCompatTextView(newContext);
-                noTareasText.setText("No tienes tareas el día " + fechaString);
-                layout.addView(noTareasText);
-            }
+            newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_PlainText);
+            AppCompatTextView noTareasText = new AppCompatTextView(newContext);
+            noTareasText.setText("No tienes tareas el día " + fechaString);
+            layout.addView(noTareasText);
         } else {
             newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_TareaButton);
             for (Tarea tarea : tareas) {

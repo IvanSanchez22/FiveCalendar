@@ -60,7 +60,7 @@ public class Calendario {
 
     public List<Tarea> getTareasDia(int dia, int mes, int anio) {
         Calendar fecha = Calendar.getInstance();
-        fecha.set(anio, mes - 1, dia);
+        fecha.set(anio, mes, dia);
         Horario.updateFecha(fecha);
         List<Tarea> tareas = new ArrayList<>();
         int index = 0;
