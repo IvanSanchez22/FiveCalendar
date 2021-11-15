@@ -28,13 +28,11 @@ public class NewTareaActivity extends AppCompatActivity {
     private int[] horaFin = new int[2];
 
     private void actualizarDisplayFecha() {
-        String fecha = String.format(Locale.getDefault(), "%02d", this.fecha[0]) + "/" + String.format(Locale.getDefault(), "%02d", this.fecha[1] + 1) + "/" + String.format(Locale.getDefault(), "%02d", this.fecha[2]);
-        displayFecha.setText(fecha);
+        displayFecha.setText(StringCreator.fechaString(fecha));
     }
 
     private void actualizarDisplayHora(TextView display, int[] hora) {
-        String horaStr = String.format(Locale.getDefault(), "%02d", hora[0]) + ":" + String.format(Locale.getDefault(), "%02d", hora[1]);
-        display.setText(horaStr);
+        display.setText(StringCreator.horaString(hora));
     }
 
     @Override
