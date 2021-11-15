@@ -76,10 +76,6 @@ public class NewTareaActivity extends AppCompatActivity {
     }
 
     public void abrirFecha(View v) {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        int day = cal.get(Calendar.DAY_OF_MONTH);
 
         DatePickerDialog dialog = new DatePickerDialog(
                 NewTareaActivity.this,
@@ -93,7 +89,7 @@ public class NewTareaActivity extends AppCompatActivity {
                         actualizarDisplayFecha();
                     }
                 },
-                year, month, day);
+                fecha[2], fecha[1], fecha[0]);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.show();
     }
