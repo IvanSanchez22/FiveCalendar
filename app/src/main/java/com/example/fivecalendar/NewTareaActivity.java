@@ -1,6 +1,7 @@
 package com.example.fivecalendar;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -16,11 +18,13 @@ import java.util.Locale;
 public class NewTareaActivity extends AppCompatActivity {
 
     private static final String TAG = "NewTareaActivity";
-    private EditText nombre, descripcion, horaInicio, horaFin;
+    private EditText nombre, descripcion;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
-    private TextView displayFecha;
+    private TextView displayFecha, displayHoraInicio, displayHoraFin;
 
-    private int[] fecha = {1, 1, 1};
+    private int[] fecha = new int[3];
+    private int[] horaInicio = new int[2];
+    private int[] horaFin = new int[2];
 
     private void actualizarDisplayFecha() {
         String fecha = String.format(Locale.getDefault(), "%02d", this.fecha[0]) + "/" + String.format(Locale.getDefault(), "%02d", this.fecha[1] + 1) + "/" + String.format(Locale.getDefault(), "%02d", this.fecha[2]);
@@ -45,39 +49,10 @@ public class NewTareaActivity extends AppCompatActivity {
 
         nombre = findViewById(R.id.editTextTextPersonName2);
         descripcion = findViewById(R.id.editTextTextMultiLine);
-        horaInicio = findViewById(R.id.editTextTime);
-        horaFin = findViewById(R.id.editTextTime2);
-
+        displayHoraInicio = findViewById(R.id.editTextTime);
+        displayHoraFin = findViewById(R.id.editTextTime2);
         displayFecha = findViewById(R.id.tvDatePicker);
         actualizarDisplayFecha();
-
-        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                fecha[0] = dayOfMonth;
-                fecha[1] = month;
-                fecha[2] = year;
-                actualizarDisplayFecha();
-            }
-        };
-
-        displayFecha.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        NewTareaActivity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        mDateSetListener,
-                        year, month, day);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
     }
 
     public void guardarTarea(View v) {
@@ -87,4 +62,42 @@ public class NewTareaActivity extends AppCompatActivity {
 
         this.finish();
     }
+
+    public void abrirFecha(View v) {
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(
+                NewTareaActivity.this,
+                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        fecha[0] = dayOfMonth;
+                        fecha[1] = month;
+                        fecha[2] = year;
+                        actualizarDisplayFecha();
+                    }
+                },
+                year, month, day);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+    }
+
+    public void abrirHoraInicio(View view) {
+        Calendar c = Calendar.getInstance();
+        int hora = c.get(Calendar.HOUR_OF_DAY);
+        int min = c.get(Calendar.MINUTE);
+
+        TimePickerDialog tmd = new TimePickerDialog(NewTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                displayHoraInicio.setText(hourOfDay + ":" + minute);
+            }
+        }, hora, min, true);
+        tmd.show();
+    }
+
 }
