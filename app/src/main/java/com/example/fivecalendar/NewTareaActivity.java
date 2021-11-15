@@ -70,8 +70,15 @@ public class NewTareaActivity extends AppCompatActivity {
     public void guardarTarea(View v) {
         Calendar fechaTarea = Calendar.getInstance();
         fechaTarea.set(fecha[2], fecha[1], fecha[0]);
-        //Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicio, horaFin);
-
+        Calendar horaInicioTarea = Calendar.getInstance();
+        horaInicioTarea.set(Calendar.HOUR_OF_DAY, horaInicio[0]);
+        horaInicioTarea.set(Calendar.MINUTE, horaInicio[1]);
+        Calendar horaFinTarea = Calendar.getInstance();
+        horaFinTarea.set(Calendar.HOUR_OF_DAY, horaFin[0]);
+        horaFinTarea.set(Calendar.MINUTE, horaFin[1]);
+        Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
+        Calendario cal = Calendario.getInstance();
+        cal.agregarTarea(NewTarea);
         this.finish();
     }
 
@@ -95,16 +102,26 @@ public class NewTareaActivity extends AppCompatActivity {
     }
 
     public void abrirHoraInicio(View view) {
-        Calendar c = Calendar.getInstance();
-        int hora = c.get(Calendar.HOUR_OF_DAY);
-        int min = c.get(Calendar.MINUTE);
-
         TimePickerDialog tmd = new TimePickerDialog(NewTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                displayHoraInicio.setText(hourOfDay + ":" + minute);
+                horaInicio[0] = hourOfDay;
+                horaInicio[1] = minute;
+                actualizarDisplayHora(displayHoraInicio, horaInicio);
             }
-        }, hora, min, true);
+        }, horaInicio[0], horaInicio[1], true);
+        tmd.show();
+    }
+
+    public void abrirHoraFin(View view) {
+        TimePickerDialog tmd = new TimePickerDialog(NewTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                horaFin[0] = hourOfDay;
+                horaFin[1] = minute;
+                actualizarDisplayHora(displayHoraFin, horaFin);
+            }
+        }, horaFin[0], horaFin[1], true);
         tmd.show();
     }
 

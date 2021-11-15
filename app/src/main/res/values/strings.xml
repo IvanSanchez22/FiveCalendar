@@ -11,4 +11,6 @@
     <string name="fecha">Fecha</string>
     <string name="hora">Hora</string>
     <string name="guardar_tarea">Guardar Tarea</string>
+    <string name="hora_inicio">Hora Inicio</string>
+    <string name="hora_fin">Hora Fin</string>
 </resources>
