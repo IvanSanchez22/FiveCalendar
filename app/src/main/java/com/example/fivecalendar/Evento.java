@@ -44,7 +44,7 @@ public abstract class Evento {
 			this.horaInicio = horaInicio;
 			this.horaFin = horaFin;
 		} else {
-			throw new RuntimeException("Hora final menor que hora inicio");
+			throw new IncorrectHoursException();
 		}
 	}
 
