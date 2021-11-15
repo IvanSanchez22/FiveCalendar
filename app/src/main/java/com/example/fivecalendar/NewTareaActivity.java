@@ -31,6 +31,11 @@ public class NewTareaActivity extends AppCompatActivity {
         displayFecha.setText(fecha);
     }
 
+    private void actualizarDisplayHora(TextView display, int[] hora) {
+        String horaStr = String.format(Locale.getDefault(), "%02d", hora[0]) + ":" + String.format(Locale.getDefault(), "%02d", hora[1]);
+        display.setText(horaStr);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -38,14 +43,19 @@ public class NewTareaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_tarea);
 
         Bundle extras = getIntent().getExtras();
+        Calendar calendar = Calendar.getInstance();
         if (extras == null || !extras.containsKey("fecha")) {
-            Calendar calendar = Calendar.getInstance();
             fecha[2] = calendar.get(Calendar.YEAR);
             fecha[1] = calendar.get(Calendar.MONTH);
             fecha[0] = calendar.get(Calendar.DAY_OF_MONTH);
         } else {
             fecha = (int[]) extras.get("fecha");
         }
+        horaInicio[0] = calendar.get(Calendar.HOUR_OF_DAY);
+        horaInicio[1] = calendar.get(Calendar.MINUTE);
+        calendar.add(Calendar.HOUR_OF_DAY, 1);
+        horaFin[0] = calendar.get(Calendar.HOUR_OF_DAY);
+        horaFin[1] = calendar.get(Calendar.MINUTE);
 
         nombre = findViewById(R.id.editTextTextPersonName2);
         descripcion = findViewById(R.id.editTextTextMultiLine);
@@ -53,6 +63,8 @@ public class NewTareaActivity extends AppCompatActivity {
         displayHoraFin = findViewById(R.id.editTextTime2);
         displayFecha = findViewById(R.id.tvDatePicker);
         actualizarDisplayFecha();
+        actualizarDisplayHora(displayHoraInicio, horaInicio);
+        actualizarDisplayHora(displayHoraFin, horaFin);
     }
 
     public void guardarTarea(View v) {
