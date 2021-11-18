@@ -1,7 +1,10 @@
 package com.example.fivecalendar;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
@@ -36,7 +39,7 @@ public class TareaActivity extends AppCompatActivity {
         horaInicio[0] = tarea.getHoraInicio().get(Calendar.HOUR_OF_DAY);
         horaInicio[1] = tarea.getHoraInicio().get(Calendar.MINUTE);
         horaFin[0] = tarea.getHoraFin().get(Calendar.HOUR_OF_DAY);
-        horaFin[0] = tarea.getHoraFin().get(Calendar.MINUTE);
+        horaFin[1] = tarea.getHoraFin().get(Calendar.MINUTE);
 
         toolbar.setTitle(tarea.getNombre());
         String descripcion = tarea.getDescripcion();
@@ -53,11 +56,26 @@ public class TareaActivity extends AppCompatActivity {
 
     }
 
-    public void eliminarTarea(View v) {
+    private void eliminarTarea(int index) {
         Calendario calendario = Calendario.getInstance();
-        calendario.eliminarTarea((int) getIntent().getExtras().get("index_calendario"));
+        calendario.eliminarTarea(index);
         Toast.makeText(this, "Tarea eliminada", Toast.LENGTH_LONG).show();
         finish();
+    }
+
+    public void eliminarTarea(View v) {
+        ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_Dialog);
+        AlertDialog.Builder builderAD = new AlertDialog.Builder(newContext);
+        builderAD.setTitle("Eliminar Tarea");
+        builderAD.setMessage("¿Estás seguro de que quieres eliminar esta tarea?");
+        builderAD.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                eliminarTarea((int) getIntent().getExtras().get("index_calendario"));
+            }
+        });
+        builderAD.setNegativeButton("Cancelar", null);
+        builderAD.create().show();
     }
 
 }
