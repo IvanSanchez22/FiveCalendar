@@ -7,6 +7,7 @@ import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.Toolbar;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -62,6 +63,8 @@ public class DiaActivity extends AppCompatActivity {
                 int[] horaFin = {tarea.getHoraFin().get(Calendar.HOUR_OF_DAY), tarea.getHoraFin().get(Calendar.MINUTE)};
                 String texto = StringCreator.horaString(horaInicio) + " - " + StringCreator.horaString(horaFin) + "    " + tarea.getNombre();
                 button.setText(texto);
+                button.setGravity(Gravity.START);
+                button.setGravity(Gravity.CENTER_VERTICAL);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
