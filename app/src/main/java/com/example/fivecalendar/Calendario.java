@@ -1,10 +1,17 @@
 package com.example.fivecalendar;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class Calendario {
+public class Calendario implements Serializable {
 
     private List<Tarea> tareas = new ArrayList<>();
     private Horario horario;
@@ -20,8 +27,48 @@ public class Calendario {
     }
 
     public static Calendario getInstance() {
-        if (instance == null) instance = new Calendario();
+        return getInstance(null);
+    }
+
+    public static Calendario getInstance(File file) {
+        if (instance == null){
+            if (file != null) {
+                try {
+                    FileInputStream fileInputStream = new FileInputStream(file);
+                    try {
+                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                        instance = (Calendario) objectInputStream.readObject();
+                        objectInputStream.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                } catch (FileNotFoundException e) {
+                    instance = new Calendario();
+                    instance.guardar(file);
+                }
+            } else {
+                instance = new Calendario();
+            }
+        }
         return instance;
+    }
+
+    public void guardar(File file) {
+        try {
+            FileOutputStream fileOutputStream = null;
+            try {
+                fileOutputStream = new FileOutputStream(file);
+            } catch (FileNotFoundException fnfe) {
+                file.createNewFile();
+                fileOutputStream = new FileOutputStream(file);
+            } finally {
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                objectOutputStream.writeObject(instance);
+                objectOutputStream.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public List<Tarea> getTareas() {

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
 
 public class TareaActivity extends AppCompatActivity {
@@ -59,6 +60,7 @@ public class TareaActivity extends AppCompatActivity {
     private void eliminarTarea(int index) {
         Calendario calendario = Calendario.getInstance();
         calendario.eliminarTarea(index);
+        calendario.guardar(new File(getFilesDir(), "calendario.bin"));
         Toast.makeText(this, "Tarea eliminada", Toast.LENGTH_LONG).show();
         finish();
     }

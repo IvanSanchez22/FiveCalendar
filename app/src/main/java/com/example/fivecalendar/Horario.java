@@ -1,10 +1,11 @@
 package com.example.fivecalendar;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Horario {
+public class Horario implements Serializable {
 
 	private Calendar fechaInicio, fechaFin;
 	private List<Clase> clases;

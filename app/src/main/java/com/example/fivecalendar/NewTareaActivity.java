@@ -14,8 +14,8 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class NewTareaActivity extends AppCompatActivity {
 
@@ -81,6 +81,7 @@ public class NewTareaActivity extends AppCompatActivity {
                 Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
                 Calendario cal = Calendario.getInstance();
                 cal.agregarTarea(NewTarea);
+                cal.guardar(new File(getFilesDir(), "calendario.bin"));
                 this.finish();
             } catch (IncorrectHoursException e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
