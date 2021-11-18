@@ -54,7 +54,7 @@ public class DiaActivity extends AppCompatActivity {
             layout.addView(noTareasText);
         } else {
             newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_TareaButton);
-            for (int i=0; i<tareas.size(); i++) {
+            for (int i=tareas.size() - 1; i>=0; i--) {
                 Tarea tarea = tareas.get(i);
                 int index = indexes.get(i);
                 AppCompatButton button = new AppCompatButton(newContext);
