@@ -30,7 +30,7 @@ public class Tarea extends Evento {
 	public boolean before(Tarea tarea) {
 		Horario.updateFecha(fecha);
 		Horario.updateFecha(tarea.fecha);
-		return fecha.before(tarea.fecha) && super.before(tarea);
+		return fecha.before(tarea.fecha) || (fecha.getTimeInMillis() == tarea.fecha.getTimeInMillis()) && super.before(tarea);
 	}
 
 	@Override
