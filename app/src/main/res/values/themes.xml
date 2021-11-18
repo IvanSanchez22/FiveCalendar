@@ -41,4 +41,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:textSize">25sp</item>
     </style>
+    <style name="Theme.FiveCalendar.Dialog" parent="Theme.FiveCalendar">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -109,7 +110,8 @@ public class NewTareaActivity extends AppCompatActivity {
     }
 
     public void abrirHoraInicio(View view) {
-        TimePickerDialog tmd = new TimePickerDialog(NewTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_Dialog);
+        TimePickerDialog tmd = new TimePickerDialog(newContext, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 horaInicio[0] = hourOfDay;
@@ -121,7 +123,8 @@ public class NewTareaActivity extends AppCompatActivity {
     }
 
     public void abrirHoraFin(View view) {
-        TimePickerDialog tmd = new TimePickerDialog(NewTareaActivity.this, new TimePickerDialog.OnTimeSetListener() {
+        ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_Dialog);
+        TimePickerDialog tmd = new TimePickerDialog(newContext, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 horaFin[0] = hourOfDay;
