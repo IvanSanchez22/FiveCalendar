@@ -1,8 +1,11 @@
 package com.example.fivecalendar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +35,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void noDesarrollado(View view) {
         Toast.makeText(MainActivity.this, "No desarrollado todavía", Toast.LENGTH_SHORT).show();
+    }
+
+    public void showHelp(View view) {
+        ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_Dialog);
+        AlertDialog.Builder builderAD = new AlertDialog.Builder(newContext);
+        builderAD.setTitle("AYUDA");
+        builderAD.setMessage(R.string.texto_ayuda);
+        builderAD.setPositiveButton("OK", null);
+        builderAD.create().show();
     }
 
 }

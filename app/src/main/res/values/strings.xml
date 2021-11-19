@@ -13,4 +13,13 @@
     <string name="guardar_tarea">Guardar Tarea</string>
     <string name="hora_inicio">Hora Inicio</string>
     <string name="hora_fin">Hora Fin</string>
+    <string name="texto_ayuda">¡Bienvenido a Five Calendar!\n\n
+    Esta aplicación te ayudará a organizar tus tareas de una manera fácil e intuitiva. Además, te permite añadir un horario para que tus tareas semanales, como las clases, se añadan automáticamente.\n\n
+    A continuación, se muestra una guía rápida de las opciones del menú principal:\n
+    \t- Abrir Calendario: Muestra un calendario donde puedes seleccionar un día para ver todas las tareas que tienes durante este.\n
+    \t- Ver Semana (No desarrollado todavía): Muestra un menú con las tareas de la semana actual.\n
+    \t- Añadir Tarea: Muestra un menú donde puedes crear una nueva tarea.\n
+    \t- Horario (No desarrollado todavía): Muestra un menú donde puedes introducir tu horario con tus tareas semanales.\n\n
+    Adelante, pulse Añadir Tarea para comenzar a anotar sus tareas. También puede realizar esta acción pulsando Abrir Calendario, escogiendo un día y pulsando el botón + presente en la lista de tareas de ese día.
+    </string>
 </resources>
