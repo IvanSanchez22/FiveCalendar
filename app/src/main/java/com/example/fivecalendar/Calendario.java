@@ -34,14 +34,7 @@ public class Calendario implements Serializable {
         if (instance == null){
             if (file != null) {
                 try {
-                    FileInputStream fileInputStream = new FileInputStream(file);
-                    try {
-                        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                        instance = (Calendario) objectInputStream.readObject();
-                        objectInputStream.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                    cargar(file);
                 } catch (FileNotFoundException e) {
                     instance = new Calendario();
                     instance.guardar(file);
@@ -51,6 +44,17 @@ public class Calendario implements Serializable {
             }
         }
         return instance;
+    }
+
+    public static void cargar(File file) throws FileNotFoundException {
+        FileInputStream fileInputStream = new FileInputStream(file);
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            instance = (Calendario) objectInputStream.readObject();
+            objectInputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void guardar(File file) {
