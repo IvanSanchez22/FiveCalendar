@@ -24,6 +24,7 @@ public class NewTareaActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener mDateSetListener;
     private TextView displayFecha, displayHoraInicio, displayHoraFin;
 
+    private int indexCalendario;
     private int[] fecha = new int[3];
     private int[] horaInicio = new int[2];
     private int[] horaFin = new int[2];
@@ -44,27 +45,46 @@ public class NewTareaActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         Calendar calendar = Calendar.getInstance();
-        if (extras == null || !extras.containsKey("fecha")) {
-            fecha[2] = calendar.get(Calendar.YEAR);
-            fecha[1] = calendar.get(Calendar.MONTH);
-            fecha[0] = calendar.get(Calendar.DAY_OF_MONTH);
-        } else {
-            fecha = (int[]) extras.get("fecha");
-        }
-        horaInicio[0] = calendar.get(Calendar.HOUR_OF_DAY);
-        horaInicio[1] = calendar.get(Calendar.MINUTE);
-        calendar.add(Calendar.HOUR_OF_DAY, 1);
-        horaFin[0] = calendar.get(Calendar.HOUR_OF_DAY);
-        horaFin[1] = calendar.get(Calendar.MINUTE);
 
         nombre = findViewById(R.id.editTextTextPersonName2);
         descripcion = findViewById(R.id.editTextTextMultiLine);
         displayHoraInicio = findViewById(R.id.editTextTime);
         displayHoraFin = findViewById(R.id.editTextTime2);
         displayFecha = findViewById(R.id.tvDatePicker);
+
+        if (extras == null || !extras.containsKey("index_calendario")) {
+            indexCalendario = -1;
+            horaInicio[0] = calendar.get(Calendar.HOUR_OF_DAY);
+            horaInicio[1] = calendar.get(Calendar.MINUTE);
+            calendar.add(Calendar.HOUR_OF_DAY, 1);
+            horaFin[0] = calendar.get(Calendar.HOUR_OF_DAY);
+            horaFin[1] = calendar.get(Calendar.MINUTE);
+            if (extras == null || !extras.containsKey("fecha")) {
+                fecha[2] = calendar.get(Calendar.YEAR);
+                fecha[1] = calendar.get(Calendar.MONTH);
+                fecha[0] = calendar.get(Calendar.DAY_OF_MONTH);
+            } else {
+                fecha = (int[]) extras.get("fecha");
+            }
+        } else {
+            indexCalendario = (int) extras.get("index_calendario");
+            Calendario calendario = Calendario.getInstance();
+            Tarea tarea = calendario.getTarea(indexCalendario);
+            nombre.setText(tarea.getNombre());
+            descripcion.setText(tarea.getDescripcion());
+            fecha[2] = tarea.getFecha().get(Calendar.YEAR);
+            fecha[1] = tarea.getFecha().get(Calendar.MONTH);
+            fecha[0] = tarea.getFecha().get(Calendar.DAY_OF_MONTH);
+            horaInicio[0] = tarea.getHoraInicio().get(Calendar.HOUR_OF_DAY);
+            horaInicio[1] = tarea.getHoraInicio().get(Calendar.MINUTE);
+            horaFin[0] = tarea.getHoraFin().get(Calendar.HOUR_OF_DAY);
+            horaFin[1] = tarea.getHoraFin().get(Calendar.MINUTE);
+        }
+
         actualizarDisplayFecha();
         actualizarDisplayHora(displayHoraInicio, horaInicio);
         actualizarDisplayHora(displayHoraFin, horaFin);
+
     }
 
     public void guardarTarea(View v) {
@@ -80,6 +100,10 @@ public class NewTareaActivity extends AppCompatActivity {
             try {
                 Tarea NewTarea = new Tarea(nombre.getText().toString(), descripcion.getText().toString(), fechaTarea, horaInicioTarea, horaFinTarea);
                 Calendario cal = Calendario.getInstance();
+                if (indexCalendario != -1) {
+                    cal.eliminarTarea(indexCalendario);
+                    getIntent().putExtra("tarea", NewTarea);
+                }
                 cal.agregarTarea(NewTarea);
                 cal.guardar(new File(getFilesDir(), "calendario.bin"));
                 this.finish();

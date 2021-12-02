@@ -1,6 +1,7 @@
 package com.example.fivecalendar;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,15 @@ public class TareaActivity extends AppCompatActivity {
         fechaTV.setText(StringCreator.fechaString(fecha));
         String strHoraTV = "De " + StringCreator.horaString(horaInicio) + " a " + StringCreator.horaString(horaFin);
         horaTV.setText(strHoraTV);
+
+    }
+
+    public void editarTarea(View v) {
+
+        Intent intent = new Intent(TareaActivity.this, NewTareaActivity.class);
+        intent.putExtra("index_calendario", tarea_index);
+        startActivity(intent);
+        finish();
 
     }
 
