@@ -157,6 +157,7 @@ public class Calendario implements Serializable {
         fecha.add(Calendar.WEEK_OF_YEAR, 1);
         while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
             tareas.add(this.tareas.get(index));
+            index++;
         }
         return tareas;
     }
@@ -173,6 +174,7 @@ public class Calendario implements Serializable {
         fecha.add(Calendar.MONTH, 1);
         while(index < this.tareas.size() && this.tareas.get(index).getFecha().before(fecha)) {
             tareas.add(this.tareas.get(index));
+            index++;
         }
         return tareas;
     }
