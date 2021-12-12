@@ -147,8 +147,12 @@ public class Calendario implements Serializable {
     public List<Tarea> getTareasSemana(int dia, int mes, int anio) {
         Calendar fecha = Calendar.getInstance();
         fecha.set(anio, mes, dia);
-        fecha.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        fecha.add(Calendar.DAY_OF_YEAR, 1);
+        if(fecha.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            fecha.add(Calendar.DAY_OF_YEAR, -6);
+        } else {
+            fecha.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+            fecha.add(Calendar.DAY_OF_YEAR, 1);
+        }
         Horario.updateFecha(fecha);
         List<Tarea> tareas = new ArrayList<>();
         int index = 0;
