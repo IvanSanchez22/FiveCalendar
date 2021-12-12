@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FiveCalendar">
         <activity
+            android:name=".SemanaActivity"
+            android:exported="false" />
+        <activity
             android:name=".TareaActivity"
             android:exported="false" />
         <activity

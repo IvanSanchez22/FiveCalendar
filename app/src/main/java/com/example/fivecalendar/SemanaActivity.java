@@ -14,9 +14,9 @@ import java.util.List;
 
 public class SemanaActivity extends AppCompatActivity {
 
-    //private Button BotonLun, BotonMar, BotonMie, BotonJue, BotonVie, BotonSab, BotonDom;
+    /*private Button BotonLun, BotonMar, BotonMie, BotonJue, BotonVie, BotonSab, BotonDom;
     private List<Tarea> tareas;
-    private List<List<Tarea>> tareasDia = new ArrayList<>();
+    private List<List<Tarea>> tareasDia = new ArrayList<>();*/
     private Calendar fecha;
 
     @Override
@@ -25,7 +25,7 @@ public class SemanaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_semana);
 
         fecha = Calendar.getInstance();
-        Calendario calendario = Calendario.getInstance();
+//        Calendario calendario = Calendario.getInstance();
 
         /*for(int i=0; i<7; i++) tareasDia.add(new ArrayList<>());
 
