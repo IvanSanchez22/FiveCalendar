@@ -148,6 +148,7 @@ public class Calendario implements Serializable {
         Calendar fecha = Calendar.getInstance();
         fecha.set(anio, mes, dia);
         fecha.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        fecha.add(Calendar.DAY_OF_YEAR, 1);
         Horario.updateFecha(fecha);
         List<Tarea> tareas = new ArrayList<>();
         int index = 0;
