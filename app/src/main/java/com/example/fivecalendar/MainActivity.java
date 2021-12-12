@@ -28,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void verSemana(View view) {
+        Intent i = new Intent(MainActivity.this, SemanaActivity.class);
+        startActivity(i);
+    }
+
     public void anadirTarea(View view) {
         Intent i = new Intent(MainActivity.this, NewTareaActivity.class);
         startActivity(i);

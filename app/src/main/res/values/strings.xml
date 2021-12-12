@@ -13,6 +13,15 @@
     <string name="guardar_tarea">Guardar Tarea</string>
     <string name="hora_inicio">Hora Inicio</string>
     <string name="hora_fin">Hora Fin</string>
+
+    <string name="lun">Lunes</string>
+    <string name="mar">Martes</string>
+    <string name="mie">Miércoles</string>
+    <string name="jue">Jueves</string>
+    <string name="vie">Viernes</string>
+    <string name="sab">Sábado</string>
+    <string name="dom">Domingo</string>
+
     <string name="texto_ayuda">¡Bienvenido a Five Calendar!\n\n
     Esta aplicación te ayudará a organizar tus tareas de una manera fácil e intuitiva. Además, te permite añadir un horario para que tus tareas semanales, como las clases, se añadan automáticamente.\n\n
     A continuación, se muestra una guía rápida de las opciones del menú principal:\n
