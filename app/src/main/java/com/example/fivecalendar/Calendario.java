@@ -89,7 +89,6 @@ public class Calendario implements Serializable {
 
     public void setHorario(Horario horario) {
         this.horario = horario;
-        actualizarHorario();
     }
 
     public void agregarTarea(Tarea tarea) {
@@ -184,7 +183,7 @@ public class Calendario implements Serializable {
         return tareas;
     }
 
-    private void actualizarHorario() {
+    public void actualizarHorario() {
         for(Clase clase: horario.getClases()) {
             Calendar fecha = (Calendar) horario.getFechaInicio().clone();
             if(fecha.get(Calendar.DAY_OF_WEEK) > clase.getDiaSemana()) {
