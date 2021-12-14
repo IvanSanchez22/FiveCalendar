@@ -68,7 +68,6 @@ public class DiaActivity extends AppCompatActivity {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AppCompatButton b = (AppCompatButton) v;
                         Intent intent = new Intent(DiaActivity.this, TareaActivity.class);
                         intent.putExtra("tarea", tarea);
                         intent.putExtra("index_calendario", index);
