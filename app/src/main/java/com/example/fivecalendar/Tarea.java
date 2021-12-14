@@ -33,6 +33,8 @@ public class Tarea extends Evento {
 		return fecha.before(tarea.fecha) || (fecha.getTimeInMillis() == tarea.fecha.getTimeInMillis()) && super.before(tarea);
 	}
 
+
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
