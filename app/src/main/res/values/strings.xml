@@ -31,4 +31,7 @@
     \t- Horario (No desarrollado todavía): Muestra un menú donde puedes introducir tu horario con tus tareas semanales.\n\n
     Adelante, pulse Añadir Tarea para comenzar a anotar sus tareas. También puede realizar esta acción pulsando Abrir Calendario, escogiendo un día y pulsando el botón + presente en la lista de tareas de ese día.
     </string>
+    <string name="guion">-</string>
+    <string name="no_tienes_horario">No tienes horario</string>
+    <string name="crear_horario">Crear Horario</string>
 </resources>

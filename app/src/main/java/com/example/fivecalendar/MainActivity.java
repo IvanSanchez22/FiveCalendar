@@ -38,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void abrirHorario(View view) {
+        Intent i = new Intent(MainActivity.this, HorarioActivity.class);
+        startActivity(i);
+    }
+
     public void noDesarrollado(View view) {
         Toast.makeText(MainActivity.this, "No desarrollado todavía", Toast.LENGTH_SHORT).show();
     }

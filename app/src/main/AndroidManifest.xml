@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FiveCalendar">
         <activity
+            android:name=".HorarioActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".SemanaActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

@@ -12,7 +12,7 @@
         android:id="@+id/button5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:onClick="noDesarrollado"
+        android:onClick="abrirHorario"
         android:text="@string/horario"
         android:textAllCaps="true"
         android:theme="@style/Theme.FiveCalendar.Button"
