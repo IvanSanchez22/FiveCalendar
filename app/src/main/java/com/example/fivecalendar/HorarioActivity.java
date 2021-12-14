@@ -110,12 +110,15 @@ public class HorarioActivity extends AppCompatActivity {
         Calendar fechaFin = Calendar.getInstance();
         fechaFin.add(Calendar.WEEK_OF_YEAR, 1);
         calendario.setHorario(new Horario(fechaInicio, fechaFin));
+
+        // Clase de prueba
         Calendar hIni = Calendar.getInstance();
         Calendar hFin = Calendar.getInstance();
         hFin.add(Calendar.HOUR, 1);
         Evento.updateHora(hIni);
         Evento.updateHora(hFin);
         calendario.getHorario().agregarClase(new Clase("Prueba", Calendar.FRIDAY, hIni, hFin));
+
         calendario.guardar(new File(getFilesDir(), "calendario.bin"));
         cargarLayoutNormal();
     }
