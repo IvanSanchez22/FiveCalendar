@@ -128,6 +128,7 @@ public class HorarioActivity extends AppCompatActivity {
     public void actualizarCalendario(View v) {
         Calendario calendario = Calendario.getInstance();
         calendario.actualizarHorario();
+        calendario.guardar(new File(getFilesDir(), "calendario.bin"));
         Toast.makeText(HorarioActivity.this, "Horario Sincronizado", Toast.LENGTH_SHORT).show();
     }
 
