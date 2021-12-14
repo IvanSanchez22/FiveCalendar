@@ -37,7 +37,7 @@ public class Horario implements Serializable {
 			this.fechaInicio = fechaInicio;
 			this.fechaFin = fechaFin;
 		} else {
-			throw new RuntimeException("Fecha de inicio posterior a la fecha final");
+			throw new IncorrectDatesException();
 		}
 	}
 
