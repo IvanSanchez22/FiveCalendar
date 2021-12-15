@@ -40,6 +40,10 @@ public class HorarioActivity extends AppCompatActivity {
         if(clases.size() == 0) {
             newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_PlainText);
             AppCompatTextView noClasesText = new AppCompatTextView(newContext);
+            noClasesText.setWidth(layout.getWidth());
+            noClasesText.setPadding(10, 0, 10, 10);
+            noClasesText.setTextSize(20);
+            noClasesText.setGravity(Gravity.CENTER);
             noClasesText.setText("No tienes Clases guardadas en tu horario");
             layout.addView(noClasesText);
         } else {
