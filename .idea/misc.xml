@@ -24,6 +24,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21927083333333333" />
         <entry key="app/src/main/res/layout/activity_anadir_tarea.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_calendario.xml" value="0.2893258426966292" />
+        <entry key="app/src/main/res/layout/activity_clase.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_dia.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_horario.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/activity_horario_null.xml" value="0.37604166666666666" />

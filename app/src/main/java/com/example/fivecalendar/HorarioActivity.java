@@ -54,15 +54,15 @@ public class HorarioActivity extends AppCompatActivity {
                 button.setText(texto);
                 button.setGravity(Gravity.START);
                 button.setGravity(Gravity.CENTER_VERTICAL);
-                /*button.setOnClickListener(new View.OnClickListener() {
+                button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(HorarioActivity.this, ClaseActivity.class);
                         intent.putExtra("clase", clase);
-                        intent.putExtra("index_calendario", index);
+                        intent.putExtra("index_horario", index);
                         startActivity(intent);
                     }
-                });*/
+                });
                 layout.addView(button);
             }
         }
@@ -123,7 +123,10 @@ public class HorarioActivity extends AppCompatActivity {
         cargarLayoutNormal();
     }
 
-    public void anadirClase(View v) {}
+    public void anadirClase(View v) {
+        Intent intent = new Intent(HorarioActivity.this, ClaseActivity.class);
+        startActivity(intent);
+    }
 
     public void actualizarCalendario(View v) {
         Calendario calendario = Calendario.getInstance();
