@@ -2,10 +2,12 @@ package com.example.fivecalendar;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatSpinner;
@@ -130,7 +132,18 @@ public class ClaseActivity extends AppCompatActivity {
     }
 
     public void eliminarClase(View v) {
-        eliminarClase(indexHorario);
+        ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_Dialog);
+        AlertDialog.Builder builderAD = new AlertDialog.Builder(newContext);
+        builderAD.setTitle("Eliminar Clase");
+        builderAD.setMessage("¿Estás seguro de que quieres eliminar esta clase?");
+        builderAD.setNegativeButton("Cancelar", null);
+        builderAD.setPositiveButton("Eliminar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                eliminarClase((int) getIntent().getExtras().get("index_horario"));
+            }
+        });
+        builderAD.create().show();
     }
 
     public void back(View v) {
