@@ -43,10 +43,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void noDesarrollado(View view) {
-        Toast.makeText(MainActivity.this, "No desarrollado todavía", Toast.LENGTH_SHORT).show();
-    }
-
     public void showHelp(View view) {
         ContextThemeWrapper newContext = new ContextThemeWrapper(this, R.style.Theme_FiveCalendar_Dialog);
         AlertDialog.Builder builderAD = new AlertDialog.Builder(newContext);
