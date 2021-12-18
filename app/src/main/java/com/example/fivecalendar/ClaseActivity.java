@@ -46,12 +46,48 @@ public class ClaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_clase);
 
         Bundle extras = getIntent().getExtras();
-        Calendar calendar = Calendar.getInstance();
 
         nombre = findViewById(R.id.editTextNameClase);
         descripcion = findViewById(R.id.editTextDescripcionClase);
         displayHoraInicio = findViewById(R.id.editTextHoraInicioClase);
         displayHoraFin = findViewById(R.id.editTextHoraFinClase);
+
+        if (extras == null || !extras.containsKey("index_horario")) {
+
+            indexHorario = -1;
+
+            FloatingActionButton deleteButton = findViewById(R.id.floatingActionButtonClaseDelete);
+            deleteButton.hide();
+
+            Calendar calendar = Calendar.getInstance();
+            horaInicio[0] = calendar.get(Calendar.HOUR_OF_DAY);
+            horaInicio[1] = calendar.get(Calendar.MINUTE);
+            calendar.add(Calendar.HOUR_OF_DAY, 1);
+            horaFin[0] = calendar.get(Calendar.HOUR_OF_DAY);
+            horaFin[1] = calendar.get(Calendar.MINUTE);
+            diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
+
+        } else {
+
+            indexHorario = (int) extras.get("index_horario");
+
+            Calendario calendario = Calendario.getInstance();
+            Clase clase = calendario.getHorario().getClase(indexHorario);
+
+            nombre.setText(clase.getNombre());
+            descripcion.setText(clase.getDescripcion());
+            horaInicio[0] = clase.getHoraInicio().get(Calendar.HOUR_OF_DAY);
+            horaInicio[1] = clase.getHoraInicio().get(Calendar.MINUTE);
+            horaFin[0] = clase.getHoraFin().get(Calendar.HOUR_OF_DAY);
+            horaFin[1] = clase.getHoraFin().get(Calendar.MINUTE);
+            diaSemana = clase.getDiaSemana();
+
+        }
+
+        actualizarDisplayHora(displayHoraInicio, horaInicio);
+        actualizarDisplayHora(displayHoraFin, horaFin);
+
+
         spinner = findViewById(R.id.diaSemanaSpinnerClase);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.day_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -69,31 +105,6 @@ public class ClaseActivity extends AppCompatActivity {
 
             }
         });
-
-        if (extras == null || !extras.containsKey("index_horario")) {
-            indexHorario = -1;
-            FloatingActionButton deleteButton = findViewById(R.id.floatingActionButtonClaseDelete);
-            deleteButton.hide();
-            horaInicio[0] = calendar.get(Calendar.HOUR_OF_DAY);
-            horaInicio[1] = calendar.get(Calendar.MINUTE);
-            calendar.add(Calendar.HOUR_OF_DAY, 1);
-            horaFin[0] = calendar.get(Calendar.HOUR_OF_DAY);
-            horaFin[1] = calendar.get(Calendar.MINUTE);
-            diaSemana = calendar.get(Calendar.DAY_OF_WEEK);
-        } else {
-            indexHorario = (int) extras.get("index_horario");
-            Calendario calendario = Calendario.getInstance();
-            Clase clase = calendario.getHorario().getClase(indexHorario);
-            nombre.setText(clase.getNombre());
-            descripcion.setText(clase.getDescripcion());
-            horaInicio[0] = clase.getHoraInicio().get(Calendar.HOUR_OF_DAY);
-            horaInicio[1] = clase.getHoraInicio().get(Calendar.MINUTE);
-            horaFin[0] = clase.getHoraFin().get(Calendar.HOUR_OF_DAY);
-            horaFin[1] = clase.getHoraFin().get(Calendar.MINUTE);
-        }
-
-        actualizarDisplayHora(displayHoraInicio, horaInicio);
-        actualizarDisplayHora(displayHoraFin, horaFin);
 
     }
 
